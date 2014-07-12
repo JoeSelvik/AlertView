@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		883A4DD31970D99D0014D392 /* TNTAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883A4DD21970D99D0014D392 /* TNTAlertViewController.m */; };
 		88BE38E21970B40D008DCBCA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE38E11970B40D008DCBCA /* Foundation.framework */; };
 		88BE38E41970B40D008DCBCA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE38E31970B40D008DCBCA /* CoreGraphics.framework */; };
 		88BE38E61970B40D008DCBCA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE38E51970B40D008DCBCA /* UIKit.framework */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		883A4DD11970D99D0014D392 /* TNTAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TNTAlertViewController.h; sourceTree = "<group>"; };
+		883A4DD21970D99D0014D392 /* TNTAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TNTAlertViewController.m; sourceTree = "<group>"; };
 		88BE38DE1970B40D008DCBCA /* AlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BE38E11970B40D008DCBCA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		88BE38E31970B40D008DCBCA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,6 +118,8 @@
 				88BE38F01970B40D008DCBCA /* TNTAppDelegate.h */,
 				88BE38F11970B40D008DCBCA /* TNTAppDelegate.m */,
 				88BE38F31970B40D008DCBCA /* Main.storyboard */,
+				883A4DD11970D99D0014D392 /* TNTAlertViewController.h */,
+				883A4DD21970D99D0014D392 /* TNTAlertViewController.m */,
 				88BE38F61970B40D008DCBCA /* TNTViewController.h */,
 				88BE38F71970B40D008DCBCA /* TNTViewController.m */,
 				88BE38F91970B40D008DCBCA /* Images.xcassets */,
@@ -250,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				883A4DD31970D99D0014D392 /* TNTAlertViewController.m in Sources */,
 				88BE38EE1970B40D008DCBCA /* main.m in Sources */,
 				88BE38F21970B40D008DCBCA /* TNTAppDelegate.m in Sources */,
 				88BE38F81970B40D008DCBCA /* TNTViewController.m in Sources */,
@@ -457,6 +463,7 @@
 				88BE39121970B40D008DCBCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88BE39131970B40D008DCBCA /* Build configuration list for PBXNativeTarget "AlertViewTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +472,7 @@
 				88BE39151970B40D008DCBCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -23,6 +23,56 @@
             </objects>
             <point key="canvasLocation" x="1450" y="250"/>
         </scene>
+        <!--Alert View Controller-->
+        <scene sceneID="EUW-YX-Evc">
+            <objects>
+                <viewController id="CZR-tJ-laP" customClass="TNTAlertViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PcZ-bg-OHK"/>
+                        <viewControllerLayoutGuide type="bottom" id="UD2-FY-TgJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RAG-Qa-tbX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEc-mh-Y8m">
+                                <rect key="frame" x="20" y="8" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="7lW-mV-TIe"/>
+                                    <constraint firstAttribute="width" constant="22" id="tXS-lk-JUY"/>
+                                </constraints>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghx-IX-N35">
+                                <rect key="frame" x="50" y="8" width="250" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.47843137254901957" green="0.066666666666666666" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ghx-IX-N35" firstAttribute="leading" secondItem="MEc-mh-Y8m" secondAttribute="trailing" constant="8" symbolic="YES" id="2sj-AU-96S"/>
+                            <constraint firstItem="UD2-FY-TgJ" firstAttribute="top" secondItem="Ghx-IX-N35" secondAttribute="bottom" constant="20" symbolic="YES" id="Hn2-kr-6l0"/>
+                            <constraint firstItem="Ghx-IX-N35" firstAttribute="top" secondItem="PcZ-bg-OHK" secondAttribute="bottom" constant="20" symbolic="YES" id="gQP-Hh-59R"/>
+                            <constraint firstItem="MEc-mh-Y8m" firstAttribute="leading" secondItem="RAG-Qa-tbX" secondAttribute="leading" constant="20" symbolic="YES" id="hZK-6c-aKU"/>
+                            <constraint firstAttribute="trailing" secondItem="Ghx-IX-N35" secondAttribute="trailing" constant="20" symbolic="YES" id="lDO-ol-OgJ"/>
+                            <constraint firstItem="MEc-mh-Y8m" firstAttribute="top" secondItem="PcZ-bg-OHK" secondAttribute="bottom" constant="20" symbolic="YES" id="nNU-XY-V3r"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="38"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="04m-Cl-XtU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2092" y="554"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="pLJ-nu-rRt">
             <objects>
