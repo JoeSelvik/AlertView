@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TNTAlertViewController.h"
 
 @interface TNTViewController : UIViewController
 

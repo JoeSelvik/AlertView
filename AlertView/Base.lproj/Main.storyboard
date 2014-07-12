@@ -68,6 +68,9 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="38"/>
+                    <connections>
+                        <outlet property="alertMessageLabel" destination="Ghx-IX-N35" id="x84-9m-Qxd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04m-Cl-XtU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
