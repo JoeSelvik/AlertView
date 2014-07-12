@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) UIView *boxView;
 @property (strong, nonatomic) UIButton *closeButtonForPopupView;
+@property (strong, nonatomic) UILabel *alertMessage;
 
 @property (assign, nonatomic) CGRect frameRectForPopupViewShow;
 @property (assign, nonatomic) CGRect frameRectForPopupViewHide;
@@ -30,12 +31,39 @@
 	// Do any additional setup after loading the view, typically from a nib.
     _animationToggle = 1;
     
-    _frameRectForPopupViewShow = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, 320, 36);
-    _frameRectForPopupViewHide = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, 320, 0);
+    // AlertView Size
+    CGFloat xAlertFrame = 0;
+    CGFloat yAlertFrame = self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat widthAlertFrame = self.navigationController.navigationBar.frame.size.width;
+    CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
+    
+    _frameRectForPopupViewShow = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
+    _frameRectForPopupViewHide = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, 0);
+    
+    // Button Size
     _frameRectForPopupViewCloseButtonShow = CGRectMake(0, 0, 20, 20);
     _frameRectForPopupViewCloseButtonHide = CGRectMake(0, 0, 0, 20);
     
-    //NSLog(@"%@", self.navigationController.navigationBar.frame);
+
+    // Trying to do layout progmat...
+    // https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/AutolayoutPG.pdf
+//    _boxView = [[UIView alloc] initWithFrame:self.frameRectForPopupViewShow];
+//    _boxView.backgroundColor = [UIColor colorWithRed:122.0/255.0 green:17.0/255.0 blue:27.0/255.0 alpha:1.0];
+//    
+//    _closeButtonForPopupView = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [_closeButtonForPopupView setTitleColor:[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+//    [_closeButtonForPopupView addTarget:self
+//                                 action:@selector(closePopupView)
+//                       forControlEvents:UIControlEventTouchUpInside];
+//    [_closeButtonForPopupView setTitle:@"X" forState:UIControlStateNormal];
+//    _closeButtonForPopupView.frame = self.frameRectForPopupViewCloseButtonHide;
+//    
+//    
+//    NSDictionary *viewsDict = NSDictionaryOfVariableBindings(self.closeButtonForPopupView, self.boxView);
+//    
+//    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"[closeButtonForPopupView]" options:<#(NSLayoutFormatOptions)#> metrics:<#(NSDictionary *)#> views:<#(NSDictionary *)#>];
+//    
+    
     
     // boxView
     _boxView = [[UIView alloc] initWithFrame:self.frameRectForPopupViewHide];
