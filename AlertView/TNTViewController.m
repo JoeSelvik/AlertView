@@ -30,17 +30,20 @@
 	// Do any additional setup after loading the view, typically from a nib.
     _animationToggle = 1;
     
-    _frameRectForPopupViewShow = CGRectMake(0, 300, 320, -45);
-    _frameRectForPopupViewHide = CGRectMake(0, 300, 320, 0);
+    _frameRectForPopupViewShow = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, 320, 36);
+    _frameRectForPopupViewHide = CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, 320, 0);
     _frameRectForPopupViewCloseButtonShow = CGRectMake(0, 0, 20, 20);
     _frameRectForPopupViewCloseButtonHide = CGRectMake(0, 0, 0, 20);
     
+    //NSLog(@"%@", self.navigationController.navigationBar.frame);
+    
     // boxView
     _boxView = [[UIView alloc] initWithFrame:self.frameRectForPopupViewHide];
-    _boxView.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:205.0/255.0 blue:51.0/255.0 alpha:1.0];
+    _boxView.backgroundColor = [UIColor colorWithRed:122.0/255.0 green:17.0/255.0 blue:27.0/255.0 alpha:1.0];
     
     // closeButton
     _closeButtonForPopupView = [UIButton buttonWithType:UIButtonTypeSystem];
+    [_closeButtonForPopupView setTitleColor:[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] forState:UIControlStateNormal];
     [_closeButtonForPopupView addTarget:self
                                  action:@selector(closePopupView)
                        forControlEvents:UIControlEventTouchUpInside];
