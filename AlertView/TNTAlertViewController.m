@@ -25,17 +25,17 @@
     return self;
 }
 
-- (id)initWithMessage:(NSString *)message
-{
-    CGFloat xAlertFrame = 0;
-    CGFloat yAlertFrame = self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat widthAlertFrame = self.navigationController.navigationBar.frame.size.width;
-    CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
-    
-    if ( self = [super initWithFrame:CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame)]) {
-        
-    }
-}
+//- (id)initWithMessage:(NSString *)message
+//{
+//    CGFloat xAlertFrame = 0;
+//    CGFloat yAlertFrame = self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
+//    CGFloat widthAlertFrame = self.navigationController.navigationBar.frame.size.width;
+//    CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
+//    
+//    if ( self = [super initWithFrame:CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame)]) {
+//        
+//    }
+//}
 
 - (void)viewDidLoad
 {

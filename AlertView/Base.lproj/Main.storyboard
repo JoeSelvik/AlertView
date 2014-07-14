@@ -26,7 +26,7 @@
         <!--Alert View Controller-->
         <scene sceneID="EUW-YX-Evc">
             <objects>
-                <viewController id="CZR-tJ-laP" customClass="TNTAlertViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="alertViewController" id="CZR-tJ-laP" customClass="TNTAlertViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PcZ-bg-OHK"/>
                         <viewControllerLayoutGuide type="bottom" id="UD2-FY-TgJ"/>

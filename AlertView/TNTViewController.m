@@ -65,24 +65,27 @@
 //    
     
     
-//    // boxView
-//    _boxView = [[UIView alloc] initWithFrame:self.frameRectForPopupViewHide];
-//    _boxView.backgroundColor = [UIColor colorWithRed:122.0/255.0 green:17.0/255.0 blue:27.0/255.0 alpha:1.0];
-//    
-//    // closeButton
-//    _closeButtonForPopupView = [UIButton buttonWithType:UIButtonTypeSystem];
-//    [_closeButtonForPopupView setTitleColor:[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-//    [_closeButtonForPopupView addTarget:self
-//                                 action:@selector(closePopupView)
-//                       forControlEvents:UIControlEventTouchUpInside];
-//    [_closeButtonForPopupView setTitle:@"X" forState:UIControlStateNormal];
-//    _closeButtonForPopupView.frame = self.frameRectForPopupViewCloseButtonHide;
-//    
-//    // Show PopupView
-//    [self.view addSubview:_boxView];
-//    [_boxView addSubview:_closeButtonForPopupView];
+    // boxView
+    _boxView = [[UIView alloc] initWithFrame:self.frameRectForPopupViewHide];
+    _boxView.backgroundColor = [UIColor colorWithRed:122.0/255.0 green:17.0/255.0 blue:27.0/255.0 alpha:1.0];
     
-    TNTAlertViewController *alertVC = [];
+    // closeButton
+    _closeButtonForPopupView = [UIButton buttonWithType:UIButtonTypeSystem];
+    [_closeButtonForPopupView setTitleColor:[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [_closeButtonForPopupView addTarget:self
+                                 action:@selector(closePopupView)
+                       forControlEvents:UIControlEventTouchUpInside];
+    [_closeButtonForPopupView setTitle:@"X" forState:UIControlStateNormal];
+    _closeButtonForPopupView.frame = self.frameRectForPopupViewCloseButtonHide;
+    
+    // Show PopupView
+    [self.view addSubview:_boxView];
+    [_boxView addSubview:_closeButtonForPopupView];
+    
+
+    UIStoryboard *storyboard = self.storyboard;
+    TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
+    [self presentViewController:alertVC animated:YES completion:nil];
     
 }
 
@@ -91,6 +94,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 -(void)closePopupView {
     
