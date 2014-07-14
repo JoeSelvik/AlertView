@@ -44,26 +44,6 @@
     _frameRectForPopupViewCloseButtonShow = CGRectMake(0, 0, 20, 20);
     _frameRectForPopupViewCloseButtonHide = CGRectMake(0, 0, 0, 20);
     
-
-    // Trying to do layout progmat...
-    // https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/AutolayoutPG.pdf
-//    _boxView = [[UIView alloc] initWithFrame:self.frameRectForPopupViewShow];
-//    _boxView.backgroundColor = [UIColor colorWithRed:122.0/255.0 green:17.0/255.0 blue:27.0/255.0 alpha:1.0];
-//    
-//    _closeButtonForPopupView = [UIButton buttonWithType:UIButtonTypeSystem];
-//    [_closeButtonForPopupView setTitleColor:[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-//    [_closeButtonForPopupView addTarget:self
-//                                 action:@selector(closePopupView)
-//                       forControlEvents:UIControlEventTouchUpInside];
-//    [_closeButtonForPopupView setTitle:@"X" forState:UIControlStateNormal];
-//    _closeButtonForPopupView.frame = self.frameRectForPopupViewCloseButtonHide;
-//    
-//    
-//    NSDictionary *viewsDict = NSDictionaryOfVariableBindings(self.closeButtonForPopupView, self.boxView);
-//    
-//    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"[closeButtonForPopupView]" options:<#(NSLayoutFormatOptions)#> metrics:<#(NSDictionary *)#> views:<#(NSDictionary *)#>];
-//    
-    
     
     // boxView
     _boxView = [[UIView alloc] initWithFrame:self.frameRectForPopupViewHide];
@@ -83,11 +63,12 @@
 //    [_boxView addSubview:_closeButtonForPopupView];
     
 
-    UIStoryboard *storyboard = self.storyboard;
-    TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
-    //[alertVC setFrame:self.frameRectForPopupViewShow];
-    [self presentViewController:alertVC animated:YES completion:nil];
+//    UIStoryboard *storyboard = self.storyboard;
+//    TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
+//    [self presentViewController:alertVC animated:YES completion:nil];
+//
     
+    [TNTAlertViewController new];
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,14 +92,15 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (self.animationToggle) {
-        // Show AlertView
-        [UIView animateWithDuration:0.5
-                         animations:^() {
-                             [self.boxView setFrame:self.frameRectForPopupViewShow];
-                             [self.closeButtonForPopupView setFrame:self.frameRectForPopupViewCloseButtonShow];
-                         }
-         ];
-        //self.animationToggle = 0;
+        UIStoryboard *storyboard = self.storyboard;
+        TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
+        //[self presentViewController:alertVC animated:YES completion:nil];
+
+        [self addChildViewController:alertVC];
+        alertVC.view.frame = self.frameRectForPopupViewShow;
+        //[self.view addSubview:self.currentChildViewController];
+        [alertVC didMoveToParentViewController:self];
+        
         
     } else {
         [self closePopupView];

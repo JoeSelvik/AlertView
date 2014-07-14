@@ -10,7 +10,9 @@
 
 @interface TNTAlertViewController ()
 
+@property (strong, nonatomic) IBOutlet UIView *alertBoxView;
 @property (weak, nonatomic) IBOutlet UILabel *alertMessageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *alertCloseButton;
 
 @end
 
@@ -41,6 +43,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [_alertCloseButton addTarget:self
+                                 action:@selector(closeAlertMessage)
+                       forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +65,19 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)setAlertMessage:(NSString *)message
+{
+    self.alertMessageLabel.text = message;
+}
+
+
+- (void)closeAlertMessage
+{
+    [self willMoveToParentViewController:nil];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+}
 
 
 @end

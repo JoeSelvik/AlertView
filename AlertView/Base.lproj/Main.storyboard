@@ -69,6 +69,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="38"/>
                     <connections>
+                        <outlet property="alertBoxView" destination="RAG-Qa-tbX" id="AcG-ON-EDA"/>
+                        <outlet property="alertCloseButton" destination="MEc-mh-Y8m" id="jwk-ac-tYX"/>
                         <outlet property="alertMessageLabel" destination="Ghx-IX-N35" id="x84-9m-Qxd"/>
                     </connections>
                 </viewController>
