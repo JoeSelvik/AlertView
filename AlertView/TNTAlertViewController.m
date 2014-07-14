@@ -10,6 +10,8 @@
 
 @interface TNTAlertViewController ()
 
+@property (assign, nonatomic) CGRect boxViewFrameSize;
+
 @property (strong, nonatomic) IBOutlet UIView *alertBoxView;
 @property (weak, nonatomic) IBOutlet UILabel *alertMessageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *alertCloseButton;
@@ -27,26 +29,20 @@
     return self;
 }
 
-//- (id)initWithMessage:(NSString *)message
-//{
-//    CGFloat xAlertFrame = 0;
-//    CGFloat yAlertFrame = self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
-//    CGFloat widthAlertFrame = self.navigationController.navigationBar.frame.size.width;
-//    CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
-//    
-//    if ( self = [super initWithFrame:CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame)]) {
-//        
-//    }
-//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [_alertCloseButton addTarget:self
-                                 action:@selector(closeAlertMessage)
-                       forControlEvents:UIControlEventTouchUpInside];
+    CGFloat xAlertFrame = 0;
+    CGFloat yAlertFrame = self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat widthAlertFrame = self.navigationController.navigationBar.frame.size.width;
+    CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
+    
+    _boxViewFrameSize = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
+    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,18 +62,40 @@
 }
 */
 
-- (void)setAlertMessage:(NSString *)message
+
+- (TNTAlertViewController *)alertVC
 {
-    self.alertMessageLabel.text = message;
+    UIStoryboard *storyboard = self.storyboard;
+    TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
+    alertVC.view.frame = self.boxViewFrameSize;
+    self.alertMessageLabel.text = @"Hello World";
+    
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+//    [alertVC.view addGestureRecognizer:tap];
+    
+    return alertVC;
 }
 
+//- (void)tap:(UIGestureRecognizer *)gr
+//{
+//    if (gr.state == UIGestureRecognizerStateEnded)
+//        [self transitionToNextViewController];
+//}
+//
+//- (void)addAlertVC:(TNTAlertViewController *)alertVC fromCurrentVC:(UIViewController *)currentVC
+//{
+//    UIViewController *nextViewController = /* alertVC */;
+//    
+//    // Containment
+//    [/* CurrentVC */ addChildViewController:nextViewController];
+//    [/* CurrentVC */.currentChildViewController willMoveToParentViewController:nil];
+//
+//    [nextViewController didMoveToParentViewController:/* CurrentVC */];
+//    [/* CurrentVC */.currentChildViewController removeFromParentViewController];
+//    /* CurrentVC */.currentChildViewController = nextViewController;
+//
+//}
 
-- (void)closeAlertMessage
-{
-    [self willMoveToParentViewController:nil];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
-}
 
 
 @end
