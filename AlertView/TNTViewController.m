@@ -79,12 +79,13 @@
     _closeButtonForPopupView.frame = self.frameRectForPopupViewCloseButtonHide;
     
     // Show PopupView
-    [self.view addSubview:_boxView];
-    [_boxView addSubview:_closeButtonForPopupView];
+//    [self.view addSubview:_boxView];
+//    [_boxView addSubview:_closeButtonForPopupView];
     
 
     UIStoryboard *storyboard = self.storyboard;
     TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
+    //[alertVC setFrame:self.frameRectForPopupViewShow];
     [self presentViewController:alertVC animated:YES completion:nil];
     
 }
