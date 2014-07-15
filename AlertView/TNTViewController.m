@@ -46,7 +46,15 @@
     _frameRectForPopupViewShow = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
     _frameRectForPopupViewHide = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, 0);
 
-
+    // Add an initial contained viewController
+    TNTAlertViewController *alertVC = [self alertVC];
+    
+    // Contain the view controller
+    [self addChildViewController:alertVC];
+    [self.view addSubview:alertVC.view];
+    [alertVC didMoveToParentViewController:self];
+    self.currentChildViewController = alertVC;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,16 +65,60 @@
 
 
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (TNTAlertViewController *)alertVC
 {
-    if (self.animationToggle) {
-       
-        TNTAlertViewController *alertVC = [TNTAlertViewController alertVC];
-        
-    } else {
-        [self closePopupView];
-    }
+    UIStoryboard *storyboard = self.storyboard;
+    TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
+    alertVC.view.frame = self.frameRectForPopupViewShow;
+    [alertVC setAlertMessage:@"Hello World"];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [alertVC.view addGestureRecognizer:tap];
+    
+    return alertVC;
 }
+
+- (void)tap:(UIGestureRecognizer *)gr
+{
+    if (gr.state == UIGestureRecognizerStateEnded)
+        [self transitionToNextViewController];
+}
+
+- (void)transitionToNextViewController
+{
+    TNTAlertViewController *alertVC = [self alertVC];
+
+    // Containment
+    [self addChildViewController:alertVC];
+    [self.currentChildViewController willMoveToParentViewController:nil];
+
+    [alertVC didMoveToParentViewController:self];
+    [self.currentChildViewController removeFromParentViewController];
+    self.currentChildViewController = alertVC;
+
+}
+
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    self.currentChildViewController.view.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.currentChildViewController.view.bounds cornerRadius:8].CGPath;
+}
+
+
+
+
+//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    if (self.animationToggle) {
+//       
+//        TNTAlertViewController *alertVC = [TNTAlertViewController alertVC];
+//        
+//    } else {
+//        [self closePopupView];
+//    }
+//}
 
 
 @end

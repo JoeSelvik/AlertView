@@ -63,39 +63,11 @@
 */
 
 
-- (TNTAlertViewController *)alertVC
+
+-(void)setAlertMessage:(NSString *)message
 {
-    UIStoryboard *storyboard = self.storyboard;
-    TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
-    alertVC.view.frame = self.boxViewFrameSize;
-    self.alertMessageLabel.text = @"Hello World";
-    
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
-//    [alertVC.view addGestureRecognizer:tap];
-    
-    return alertVC;
+    self.alertMessageLabel.text = message;
 }
-
-//- (void)tap:(UIGestureRecognizer *)gr
-//{
-//    if (gr.state == UIGestureRecognizerStateEnded)
-//        [self transitionToNextViewController];
-//}
-//
-//- (void)addAlertVC:(TNTAlertViewController *)alertVC fromCurrentVC:(UIViewController *)currentVC
-//{
-//    UIViewController *nextViewController = /* alertVC */;
-//    
-//    // Containment
-//    [/* CurrentVC */ addChildViewController:nextViewController];
-//    [/* CurrentVC */.currentChildViewController willMoveToParentViewController:nil];
-//
-//    [nextViewController didMoveToParentViewController:/* CurrentVC */];
-//    [/* CurrentVC */.currentChildViewController removeFromParentViewController];
-//    /* CurrentVC */.currentChildViewController = nextViewController;
-//
-//}
-
 
 
 @end
