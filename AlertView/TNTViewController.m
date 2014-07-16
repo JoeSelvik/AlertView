@@ -10,21 +10,9 @@
 
 @interface TNTViewController ()
 
-@property float animationToggle;
-
-@property (strong, nonatomic) UIView *boxView;
-@property (strong, nonatomic) UIButton *closeButtonForPopupView;
-@property (strong, nonatomic) UILabel *alertMessage;
-
-@property (assign, nonatomic) CGRect frameRectForPopupViewShow;
-@property (assign, nonatomic) CGRect frameRectForPopupViewHide;
-@property (assign, nonatomic) CGRect frameRectForPopupViewCloseButtonShow;
-@property (assign, nonatomic) CGRect frameRectForPopupViewCloseButtonHide;
-
-
+@property (assign, nonatomic) CGRect frameForAlertView;
 
 @property (nonatomic, weak) UIViewController *currentChildViewController;
-
 
 @end
 
@@ -35,7 +23,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    _animationToggle = 1;
     
     // AlertView Size
     CGFloat xAlertFrame = 0;
@@ -43,11 +30,11 @@
     CGFloat widthAlertFrame = self.navigationController.navigationBar.frame.size.width;
     CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
     
-    _frameRectForPopupViewShow = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
-    _frameRectForPopupViewHide = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, 0);
+    _frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
 
     // Add an initial contained viewController
     TNTAlertViewController *alertVC = [self alertVC];
+    [alertVC setAlertMessage:@"View Did Load"];
     
     // Contain the view controller
     [self addChildViewController:alertVC];
@@ -64,13 +51,11 @@
 }
 
 
-
 - (TNTAlertViewController *)alertVC
 {
     UIStoryboard *storyboard = self.storyboard;
     TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
-    alertVC.view.frame = self.frameRectForPopupViewShow;
-    [alertVC setAlertMessage:@"Hello World"];
+    alertVC.view.frame = self.frameForAlertView;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
     [alertVC.view addGestureRecognizer:tap];
@@ -87,6 +72,7 @@
 - (void)transitionToNextViewController
 {
     TNTAlertViewController *alertVC = [self alertVC];
+    [alertVC setAlertMessage:@"You are number 666"];
 
     // Containment
     [self addChildViewController:alertVC];
@@ -106,19 +92,6 @@
     self.currentChildViewController.view.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.currentChildViewController.view.bounds cornerRadius:8].CGPath;
 }
 
-
-
-
-//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    if (self.animationToggle) {
-//       
-//        TNTAlertViewController *alertVC = [TNTAlertViewController alertVC];
-//        
-//    } else {
-//        [self closePopupView];
-//    }
-//}
 
 
 @end
