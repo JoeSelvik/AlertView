@@ -33,18 +33,7 @@
     
     _frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
 
-    // Add an initial contained viewController
-    TNTAlertViewController *alertVC = [self alertVC];
-    [alertVC setAlertMessage:@"View Did Load"];
-    [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
-    
-    // Contain the view controller
-    [self addChildViewController:alertVC];
-    [self.view addSubview:alertVC.view];
-    [alertVC didMoveToParentViewController:self];
-    
-    // Keep track of the alertVC
-    self.currentAlertMessageViewController = alertVC;
+    [self createAlertVCWithMessage:@"From viewDidLoad"];
     
 }
 
@@ -55,11 +44,22 @@
 }
 
 
-- (TNTAlertViewController *)alertVC
+- (TNTAlertViewController *)createAlertVCWithMessage:(NSString *)message
 {
     UIStoryboard *storyboard = self.storyboard;
     TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
     alertVC.view.frame = self.frameForAlertView;
+    
+    [alertVC setAlertMessage:message];
+    [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
+    
+    // Contain the view controller
+    [self addChildViewController:alertVC];
+    [self.view addSubview:alertVC.view];
+    [alertVC didMoveToParentViewController:self];
+    
+    // Keep track of the alertVC
+    self.currentAlertMessageViewController = alertVC;
     
     return alertVC;
 }
@@ -74,18 +74,7 @@
 
 -(void)newAlertVCButton:(id)sender
 {
-    // Add an initial contained viewController
-    TNTAlertViewController *alertVC = [self alertVC];
-    [alertVC setAlertMessage:@"From button"];
-    [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
-    
-    // Contain the view controller
-    [self addChildViewController:alertVC];
-    [self.view addSubview:alertVC.view];
-    [alertVC didMoveToParentViewController:self];
-    
-    // Keep track of the alertVC
-    self.currentAlertMessageViewController = alertVC;
+    [self createAlertVCWithMessage:@"From button"];
 }
 
 
