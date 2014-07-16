@@ -10,7 +10,7 @@
 
 @interface TNTAlertViewController ()
 
-@property (assign, nonatomic) CGRect boxViewFrameSize;
+@property (nonatomic, weak) UIViewController *currentAlertMessageViewController;
 
 @property (strong, nonatomic) IBOutlet UIView *alertBoxView;
 @property (weak, nonatomic) IBOutlet UILabel *alertMessageLabel;
@@ -34,15 +34,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    CGFloat xAlertFrame = 0;
-    CGFloat yAlertFrame = self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat widthAlertFrame = self.navigationController.navigationBar.frame.size.width;
-    CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
-    
-    _boxViewFrameSize = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
-    
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,6 +59,26 @@
 {
     self.alertMessageLabel.text = message;
 }
+
+-(void)connectAlertVCCloseButtonWithSelf:(TNTAlertViewController *)instance
+{
+    self.currentAlertMessageViewController = instance;
+    
+    [_alertCloseButton addTarget:self
+                          action:@selector(closeAlertMessageVC)
+                forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+-(void)closeAlertMessageVC
+{
+    [self.currentAlertMessageViewController willMoveToParentViewController:nil];
+    [self.currentAlertMessageViewController.view removeFromSuperview];
+    [self.currentAlertMessageViewController removeFromParentViewController];
+
+}
+
+
 
 
 @end

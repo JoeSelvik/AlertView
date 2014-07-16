@@ -12,7 +12,7 @@
 
 @property (assign, nonatomic) CGRect frameForAlertView;
 
-@property (nonatomic, weak) UIViewController *currentChildViewController;
+@property (nonatomic, weak) UIViewController *currentAlertMessageViewController;
 
 @end
 
@@ -35,12 +35,15 @@
     // Add an initial contained viewController
     TNTAlertViewController *alertVC = [self alertVC];
     [alertVC setAlertMessage:@"View Did Load"];
+    [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
     
     // Contain the view controller
     [self addChildViewController:alertVC];
     [self.view addSubview:alertVC.view];
     [alertVC didMoveToParentViewController:self];
-    self.currentChildViewController = alertVC;
+    
+    // Keep track of the alertVC
+    self.currentAlertMessageViewController = alertVC;
     
 }
 
@@ -57,39 +60,44 @@
     TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
     alertVC.view.frame = self.frameForAlertView;
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
-    [alertVC.view addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+//    [alertVC.view addGestureRecognizer:tap];
     
     return alertVC;
 }
 
-- (void)tap:(UIGestureRecognizer *)gr
-{
-    if (gr.state == UIGestureRecognizerStateEnded)
-        [self transitionToNextViewController];
-}
+//- (void)tap:(UIGestureRecognizer *)gr
+//{
+//    if (gr.state == UIGestureRecognizerStateEnded)
+//        [self transitionToNextViewController];
+//}
 
-- (void)transitionToNextViewController
-{
-    TNTAlertViewController *alertVC = [self alertVC];
-    [alertVC setAlertMessage:@"You are number 666"];
-
-    // Containment
-    [self addChildViewController:alertVC];
-    [self.currentChildViewController willMoveToParentViewController:nil];
-
-    [alertVC didMoveToParentViewController:self];
-    [self.currentChildViewController removeFromParentViewController];
-    self.currentChildViewController = alertVC;
-
-}
+//- (void)transitionToNextViewController
+//{
+////    TNTAlertViewController *alertVC = [self alertVC];
+////    [alertVC setAlertMessage:@"You are number 666"];
+//
+////    // Containment
+////    [self addChildViewController:alertVC];
+////    [self.currentAlertMessageViewController willMoveToParentViewController:nil];
+////
+////    [alertVC didMoveToParentViewController:self];
+////    [self.currentAlertMessageViewController removeFromParentViewController];
+////    self.currentAlertMessageViewController = alertVC;
+//
+//    // Remove alertVC
+//    [self.currentAlertMessageViewController willMoveToParentViewController:nil];
+//    [self.currentAlertMessageViewController.view removeFromSuperview];
+//    [self.currentAlertMessageViewController removeFromParentViewController];
+//    
+//}
 
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
     
-    self.currentChildViewController.view.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.currentChildViewController.view.bounds cornerRadius:8].CGPath;
+    self.currentAlertMessageViewController.view.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.currentAlertMessageViewController.view.bounds cornerRadius:8].CGPath;
 }
 
 
