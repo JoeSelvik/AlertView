@@ -12,7 +12,7 @@
 
 @property (nonatomic, weak) UIViewController *currentAlertMessageViewController;
 
-@property (strong, nonatomic) IBOutlet UIView *alertBoxView;
+@property (strong, nonatomic) IBOutlet UIView *alertBoxView;        // Crashes if this is deleted
 @property (weak, nonatomic) IBOutlet UILabel *alertMessageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *alertCloseButton;
 
@@ -64,7 +64,7 @@
 {
     self.currentAlertMessageViewController = instance;
     
-    [_alertCloseButton addTarget:self
+    [self.alertCloseButton addTarget:self
                           action:@selector(closeAlertMessageVC)
                 forControlEvents:UIControlEventTouchUpInside];
     
