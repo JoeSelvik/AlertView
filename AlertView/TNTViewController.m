@@ -11,7 +11,6 @@
 @interface TNTViewController ()
 
 @property (assign, nonatomic) CGRect frameForAlertView;
-@property (nonatomic, weak) UIViewController *currentAlertMessageViewController;
 
 - (IBAction)newAlertVCButton:(id)sender;
 
@@ -30,11 +29,9 @@
     CGFloat yAlertFrame = self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
     CGFloat widthAlertFrame = self.navigationController.navigationBar.frame.size.width;
     CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
-    
     _frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
 
     [self createAlertVCWithMessage:@"From viewDidLoad"];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,25 +50,17 @@
     [alertVC setAlertMessage:message];
     [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
     
-    // Contain the view controller
+    // Properly add childVC to parentVC
     [self addChildViewController:alertVC];
     [self.view addSubview:alertVC.view];
     [alertVC didMoveToParentViewController:self];
     
-    // Keep track of the alertVC
-    self.currentAlertMessageViewController = alertVC;
-    
     return alertVC;
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
-    self.currentAlertMessageViewController.view.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.currentAlertMessageViewController.view.bounds cornerRadius:8].CGPath;
-}
 
 
+// For testing!!
 -(void)newAlertVCButton:(id)sender
 {
     [self createAlertVCWithMessage:@"From button"];
