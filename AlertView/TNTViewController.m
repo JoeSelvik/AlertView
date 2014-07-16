@@ -31,8 +31,10 @@
     CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
     _frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
 
-    //[self createAlertVCWithMessage:@"From viewDidLoad"];
+//    [self createAlertVCWithMessage:@"From viewDidLoad"];
     
+    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
+    [alertVCController createAlertVCWithMessage:@"Hello World" fromCurrentVC:self];
 }
 
 - (void)didReceiveMemoryWarning

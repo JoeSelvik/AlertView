@@ -31,6 +31,17 @@
     return self;
 }
 
++ (TNTAlertViewController *)sharedInstance
+{
+    static TNTAlertViewController *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[TNTAlertViewController alloc] init];
+    });
+    
+    return _sharedInstance;
+}
+
 
 - (void)viewDidLoad
 {
@@ -65,7 +76,7 @@
 
 -(void)createAlertVCWithMessage:(NSString *)message fromCurrentVC:(UIViewController *)currentVC
 {
-    UIStoryboard *storyboard = self.storyboard;
+    UIStoryboard *storyboard = currentVC.storyboard;
     TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
     alertVC.view.frame = self.frameForAlertView;
     
