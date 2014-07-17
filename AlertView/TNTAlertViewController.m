@@ -64,10 +64,11 @@
     
     // AlertView Size
     CGFloat xAlertFrame = 0;
-    CGFloat yAlertFrame = dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat yStartAlertFrame = -1.0 * (dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height);
+    CGFloat yEndAlertFrame = -2.0 * yStartAlertFrame;
     CGFloat widthAlertFrame = dummyNavigationController.navigationBar.frame.size.width;
     CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
-    self.frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
+    self.frameForAlertView = CGRectMake(xAlertFrame, yStartAlertFrame, widthAlertFrame, heightAlertFrame);
     
     UIStoryboard *storyboard = currentVC.storyboard;
     TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
@@ -76,11 +77,25 @@
     [alertVC setAlertMessage:message];
     [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
     
+    // Create the alertView above the screen
     // Properly add childVC to parentVC
     [currentVC addChildViewController:alertVC];
     [currentVC.view addSubview:alertVC.view];
     [alertVC didMoveToParentViewController:currentVC];
+    
+    
+    // Animate the Alertview down into place over the navigation bar
+    [UIView animateWithDuration:1.0
+                          delay:0.0
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         alertVC.view.transform = CGAffineTransformMakeTranslation(0.0, yEndAlertFrame);
+                     } completion:nil
+     ];
+    
 }
+
+
 
 -(void)setAlertMessage:(NSString *)message
 {
