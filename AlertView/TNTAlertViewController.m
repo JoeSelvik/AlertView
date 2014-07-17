@@ -57,7 +57,7 @@
 }
 
 
-// Is it acceptable to pass in the current VC like this?
+// Is it acceptable to pass in the currentVC like this?
 -(void)createAlertVCWithMessage:(NSString *)message fromCurrentVC:(UIViewController *)currentVC
 {
     UINavigationController *dummyNavigationController = [UINavigationController new]; // Or whichever custom nav bar we use
@@ -94,7 +94,6 @@
      ];
     
 }
-
 
 
 -(void)setAlertMessage:(NSString *)message
