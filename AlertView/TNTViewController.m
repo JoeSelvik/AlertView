@@ -34,7 +34,7 @@
 //    [self createAlertVCWithMessage:@"From viewDidLoad"];
     
     TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
-    [alertVCController createAlertVCWithMessage:@"Hello World" fromCurrentVC:self];
+    [alertVCController createAlertVCWithMessage:@"Alert from abstracted method" fromCurrentVC:self];
 }
 
 - (void)didReceiveMemoryWarning

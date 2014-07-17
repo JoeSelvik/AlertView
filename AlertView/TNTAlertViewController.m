@@ -47,13 +47,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    // AlertView Size
-    CGFloat xAlertFrame = 0;
-    CGFloat yAlertFrame = self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat widthAlertFrame = self.navigationController.navigationBar.frame.size.width;
-    CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
-    _frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,6 +69,15 @@
 
 -(void)createAlertVCWithMessage:(NSString *)message fromCurrentVC:(UIViewController *)currentVC
 {
+    UINavigationController *dummyNavigationController = [UINavigationController new];
+    
+    // AlertView Size
+    CGFloat xAlertFrame = 0;
+    CGFloat yAlertFrame = dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat widthAlertFrame = dummyNavigationController.navigationBar.frame.size.width;
+    CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
+    self.frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
+    
     UIStoryboard *storyboard = currentVC.storyboard;
     TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
     alertVC.view.frame = self.frameForAlertView;
@@ -88,7 +90,6 @@
     [currentVC.view addSubview:alertVC.view];
     [alertVC didMoveToParentViewController:currentVC];
 }
-
 
 
 -(void)setAlertMessage:(NSString *)message
