@@ -57,9 +57,10 @@
 }
 
 
+// Is it acceptable to pass in the current VC like this?
 -(void)createAlertVCWithMessage:(NSString *)message fromCurrentVC:(UIViewController *)currentVC
 {
-    UINavigationController *dummyNavigationController = [UINavigationController new];
+    UINavigationController *dummyNavigationController = [UINavigationController new]; // Or whichever custom nav bar we use
     
     // AlertView Size
     CGFloat xAlertFrame = 0;
@@ -87,7 +88,7 @@
 }
 
 
-// TODO: This feels hacky. Improve?
+// TODO: This feels hacky. Improve by adding these two methods together?
 -(void)connectAlertVCCloseButtonWithSelf:(TNTAlertViewController *)instance
 {
     self.currentAlertMessageViewController = instance;
