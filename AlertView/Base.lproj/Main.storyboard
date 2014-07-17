@@ -26,6 +26,16 @@
                                     <action selector="newAlertVCButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4Fl-Th-06e"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pmS-yQ-RPF">
+                                <rect key="frame" x="78" y="239" width="164" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Move to a different view">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="IgA-5W-12e" kind="push" id="8D5-Om-x7N"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -34,6 +44,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1450" y="250"/>
+        </scene>
+        <!--Table View Controller - Did the alert work?-->
+        <scene sceneID="ysv-LZ-dgt">
+            <objects>
+                <tableViewController id="IgA-5W-12e" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="EA5-Sl-onm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="M5U-WF-ccL">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M5U-WF-ccL" id="Ovk-AO-WlA">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IgA-5W-12e" id="ZSv-js-4aD"/>
+                            <outlet property="delegate" destination="IgA-5W-12e" id="7cI-r9-3TL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Did the alert work?" id="aIv-Rg-iNc"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UdH-1X-Sp2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2057" y="250"/>
         </scene>
         <!--Alert View Controller-->
         <scene sceneID="EUW-YX-Evc">
@@ -88,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04m-Cl-XtU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2092" y="554"/>
+            <point key="canvasLocation" x="924" y="958"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pLJ-nu-rRt">

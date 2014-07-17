@@ -8,10 +8,10 @@
 
 #import "TNTViewController.h"
 
+
 @interface TNTViewController ()
 
-@property (assign, nonatomic) CGRect frameForAlertView;
-
+// Button is for testing only
 - (IBAction)newAlertVCButton:(id)sender;
 
 @end
@@ -24,14 +24,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    // AlertView Size
-    CGFloat xAlertFrame = 0;
-    CGFloat yAlertFrame = self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat widthAlertFrame = self.navigationController.navigationBar.frame.size.width;
-    CGFloat heightAlertFrame = self.navigationController.navigationBar.frame.size.height;
-    _frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
-
-    [self createAlertVCWithMessage:@"From viewDidLoad"];
+    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
+    [alertVCController createAlertVCWithMessage:@"Alert from abstracted method" fromCurrentVC:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,29 +35,11 @@
 }
 
 
-- (TNTAlertViewController *)createAlertVCWithMessage:(NSString *)message
-{
-    UIStoryboard *storyboard = self.storyboard;
-    TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
-    alertVC.view.frame = self.frameForAlertView;
-    
-    [alertVC setAlertMessage:message];
-    [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
-    
-    // Properly add childVC to parentVC
-    [self addChildViewController:alertVC];
-    [self.view addSubview:alertVC.view];
-    [alertVC didMoveToParentViewController:self];
-    
-    return alertVC;
-}
-
-
-
-// For testing!!
+// For testing
 -(void)newAlertVCButton:(id)sender
 {
-    [self createAlertVCWithMessage:@"From button"];
+    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
+    [alertVCController createAlertVCWithMessage:@"From button" fromCurrentVC:self];
 }
 
 
