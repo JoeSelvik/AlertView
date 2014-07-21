@@ -10,4 +10,6 @@
 
 @interface TNTNavigationController : UINavigationController
 
+- (void)createAlertVCWithMessage:(NSString *)msg;
+
 @end

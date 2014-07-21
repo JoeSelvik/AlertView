@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 The New Tricks. All rights reserved.
 //
 
+#import "TNTNavigationController.h"
 #import "TNTViewController.h"
 
 
@@ -24,8 +25,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
-    [alertVCController createAlertVCWithMessage:@"Alert from abstracted method" fromCurrentVC:self];
+//    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
+//    [alertVCController createAlertVCWithMessage:@"Alert from abstracted method" fromCurrentVC:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,8 +39,11 @@
 // For testing
 -(void)newAlertVCButton:(id)sender
 {
-    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
-    [alertVCController createAlertVCWithMessage:@"From button" fromCurrentVC:self];
+//    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
+//    [alertVCController createAlertVCWithMessage:@"From button" fromCurrentVC:self];
+
+    [(TNTNavigationController *)self.navigationController createAlertVCWithMessage:@"from the button"];
+    
 }
 
 

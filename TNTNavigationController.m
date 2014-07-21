@@ -40,8 +40,8 @@
     
     [self configure];
     
-    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
-    [alertVCController createAlertVCWithMessage:@"Alert from TNTNavController" fromCurrentVC:self];
+//    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
+//    [alertVCController createAlertVCWithMessage:@"Alert from TNTNavController" fromCurrentVC:self];
     
 }
 
@@ -51,16 +51,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)createAlertVCWithMessage:(NSString *)msg
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
+    [alertVCController createAlertVCWithMessage:msg fromCurrentVC:self];
+
 }
-*/
 
 @end
 
