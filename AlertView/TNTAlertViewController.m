@@ -80,6 +80,7 @@
     [currentVC addChildViewController:alertVC];
     [currentVC.view addSubview:alertVC.view];
     [alertVC didMoveToParentViewController:currentVC];
+    
 }
 
 -(void)setAlertMessage:(NSString *)message

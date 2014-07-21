@@ -13,6 +13,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+//    UIViewController *masterView = [UIViewController new];
+//    
+//    //[self.window addSubview:masterView];
+//    self.window.rootViewController = masterView;
+    
     return YES;
 }
 							
