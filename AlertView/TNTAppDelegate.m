@@ -7,6 +7,7 @@
 //
 
 #import "TNTAppDelegate.h"
+#import "TNTMasterViewController.h"
 #import "TNTNavigationController.h"
 #import "TNTViewController.h"
 
@@ -21,6 +22,10 @@
     
     // Cast return value to TNTNavController?
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    // Make TNTMAsterVC the rootViewController
+    TNTMasterViewController *masterVC = [TNTMasterViewController new];
+    
     TNTNavigationController *navigationController = [mainStoryboard instantiateViewControllerWithIdentifier:@"firstNavController"];
     TNTViewController *mainViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainViewController"];
     
