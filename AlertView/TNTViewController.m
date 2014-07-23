@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 The New Tricks. All rights reserved.
 //
 
+#import "TNTMasterViewController.h"
 #import "TNTViewController.h"
 
 
@@ -38,8 +39,12 @@
 // For testing
 -(void)newAlertVCButton:(id)sender
 {
-    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
-    [alertVCController createAlertVCWithMessage:@"From button" fromCurrentVC:self];
+//    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
+//    [alertVCController createAlertVCWithMessage:@"From button" fromCurrentVC:self];
+
+    TNTMasterViewController *masterVC = (TNTMasterViewController *)[[self view] window].rootViewController;
+    [masterVC displayAlertViewWithMessage:@"I did it"];
+    
 }
 
 

@@ -20,23 +20,20 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    // Cast return value to TNTNavController?
+    // Cast return value as TNTNavController?
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    // Make TNTMAsterVC the rootViewController
+    // Make TNTMasterVC the rootViewController
     TNTMasterViewController *masterVC = [TNTMasterViewController new];
-    
     self.window.rootViewController = masterVC;
     [self.window makeKeyAndVisible];
     
-    // Create the Navigation and first VC
+    // Create the NavigationController and set the NavigationController's rootVC
     TNTNavigationController *navigationController = [mainStoryboard instantiateViewControllerWithIdentifier:@"firstNavController"];
     TNTViewController *mainViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainViewController"];
     
     TNTNavigationController *toBeRootViewController = [navigationController initWithRootViewController:mainViewController];
-    
-//    self.window.rootViewController = toBeRootViewController;
-//    [self.window makeKeyAndVisible];
+
     
     // Make the navigationVC a child of the masterVC
     [self.window.rootViewController addChildViewController:toBeRootViewController];

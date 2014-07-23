@@ -10,4 +10,6 @@
 
 @interface TNTMasterViewController : UIViewController
 
+-(void)displayAlertViewWithMessage:(NSString *)msg;
+
 @end

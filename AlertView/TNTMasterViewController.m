@@ -7,6 +7,7 @@
 //
 
 #import "TNTMasterViewController.h"
+#import "TNTAlertViewController.h"
 
 @interface TNTMasterViewController ()
 
@@ -47,7 +48,11 @@
 */
 
 
-
+-(void)displayAlertViewWithMessage:(NSString *)msg
+{
+    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
+    [alertVCController createAlertVCWithMessage:msg fromCurrentVC:self];
+}
 
 
 

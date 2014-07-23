@@ -69,8 +69,9 @@
     CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
     self.frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
     
-    UIStoryboard *storyboard = currentVC.storyboard;
-    TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
+    //UIStoryboard *storyboard = currentVC.storyboard;
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TNTAlertViewController *alertVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"alertViewController"];
     alertVC.view.frame = self.frameForAlertView;
     
     [alertVC setAlertMessage:message];
