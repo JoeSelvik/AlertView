@@ -17,29 +17,28 @@
 {
     // Override point for customization after application launch.
     
+    // Create the window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    
-    // Cast return value as TNTNavController?
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     // Make TNTMasterVC the rootViewController
     TNTMasterViewController *masterVC = [TNTMasterViewController new];
     self.window.rootViewController = masterVC;
     [self.window makeKeyAndVisible];
     
-    // Create the NavigationController and set the NavigationController's rootVC
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    // Create a TNTNavigationController and set its rootVC to the initial VC of the app
+    // Make sure these both come from the storyboard
     TNTNavigationController *navigationController = [mainStoryboard instantiateViewControllerWithIdentifier:@"firstNavController"];
     TNTViewController *mainViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainViewController"];
     
-    TNTNavigationController *toBeRootViewController = [navigationController initWithRootViewController:mainViewController];
+    TNTNavigationController *rootViewController = [navigationController initWithRootViewController:mainViewController];
 
-    
-    // Make the navigationVC a child of the masterVC
-    [self.window.rootViewController addChildViewController:toBeRootViewController];
-    [self.window.rootViewController.view addSubview:toBeRootViewController.view];
-    [toBeRootViewController didMoveToParentViewController:self.window.rootViewController];
-    
+    // Make the navigationVC (rootNavController) a child of the masterVC (rootVC)
+    [self.window.rootViewController addChildViewController:rootViewController];
+    [self.window.rootViewController.view addSubview:rootViewController.view];
+    [rootViewController didMoveToParentViewController:self.window.rootViewController];
     
     return YES;
 }
