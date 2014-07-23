@@ -7,6 +7,8 @@
 //
 
 #import "TNTAppDelegate.h"
+#import "TNTNavigationController.h"
+#import "TNTViewController.h"
 
 @implementation TNTAppDelegate
 
@@ -14,10 +16,18 @@
 {
     // Override point for customization after application launch.
     
-//    UIViewController *masterView = [UIViewController new];
-//    
-//    //[self.window addSubview:masterView];
-//    self.window.rootViewController = masterView;
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    // Cast return value to TNTNavController?
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TNTNavigationController *navigationController = [mainStoryboard instantiateViewControllerWithIdentifier:@"firstNavController"];
+    TNTViewController *mainViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+    
+    TNTNavigationController *toBeRootViewController = [navigationController initWithRootViewController:mainViewController];
+    
+    self.window.rootViewController = toBeRootViewController;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

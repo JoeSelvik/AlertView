@@ -7,7 +7,7 @@
         <!--View Controller - Map-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="TNTViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" id="vXZ-lx-hvc" customClass="TNTViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -132,7 +132,8 @@
         <!--Navigation Controller-->
         <scene sceneID="pLJ-nu-rRt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="spE-nc-gNc" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3WU-UN-N6P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="firstNavController" automaticallyAdjustsScrollViewInsets="NO" id="spE-nc-gNc" customClass="TNTNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7EK-st-l8B">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -143,7 +144,6 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="zWz-dT-8Oh"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3WU-UN-N6P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="924" y="250"/>
         </scene>
