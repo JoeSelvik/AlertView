@@ -26,13 +26,23 @@
     // Make TNTMAsterVC the rootViewController
     TNTMasterViewController *masterVC = [TNTMasterViewController new];
     
+    self.window.rootViewController = masterVC;
+    [self.window makeKeyAndVisible];
+    
+    // Create the Navigation and first VC
     TNTNavigationController *navigationController = [mainStoryboard instantiateViewControllerWithIdentifier:@"firstNavController"];
     TNTViewController *mainViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainViewController"];
     
     TNTNavigationController *toBeRootViewController = [navigationController initWithRootViewController:mainViewController];
     
-    self.window.rootViewController = toBeRootViewController;
-    [self.window makeKeyAndVisible];
+//    self.window.rootViewController = toBeRootViewController;
+//    [self.window makeKeyAndVisible];
+    
+    // Make the navigationVC a child of the masterVC
+    [self.window.rootViewController addChildViewController:toBeRootViewController];
+    [self.window.rootViewController.view addSubview:toBeRootViewController.view];
+    [toBeRootViewController didMoveToParentViewController:self.window.rootViewController];
+    
     
     return YES;
 }
