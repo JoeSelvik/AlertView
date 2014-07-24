@@ -49,19 +49,19 @@
 {
     TNTNavigationController *dummyNavigationController = [TNTNavigationController new];
     
-    // Set AlertView Frame
-    CGFloat xAlertFrame = 0;    // TODO - find programically?
-    CGFloat yAlertFrame = dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat widthAlertFrame = dummyNavigationController.navigationBar.frame.size.width;
-    CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
-    CGRect frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
+//    // Set AlertView Frame
+//    CGFloat xAlertFrame = 0;    // TODO - find programically?
+//    CGFloat yAlertFrame = dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
+//    CGFloat widthAlertFrame = dummyNavigationController.navigationBar.frame.size.width;
+//    CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
+//    CGRect frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
     
     // Create the AlertVC from the storyboard
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     TNTAlertViewController *alertVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"alertViewController"];
     
     // Configure the AlertVC
-    alertVC.view.frame = frameForAlertView;
+//    alertVC.view.frame = frameForAlertView;
     [alertVC setAlertMessage:msg];
     [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
     

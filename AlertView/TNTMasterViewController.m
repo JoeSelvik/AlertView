@@ -7,6 +7,7 @@
 //
 
 #import "TNTMasterViewController.h"
+#import "TNTNavigationController.h"
 #import "TNTAlertViewController.h"
 
 @interface TNTMasterViewController ()
@@ -39,15 +40,23 @@
 
 -(void)displayAlertViewWithMessage:(NSString *)msg
 {
+    
     TNTAlertViewController *alertVC = [TNTAlertViewController createAlertViewWithMessage:msg];
     
-    // Get the root MasterVC instance to be the parent to the new AlertVC
-    TNTMasterViewController *masterVC = (TNTMasterViewController *)[[self view] window].rootViewController;
+    // Set AlertView Frame
+    TNTNavigationController *dummyNavigationController = [TNTNavigationController new];
+    CGFloat xAlertFrame = 0;    // TODO - find programically?
+    CGFloat yAlertFrame = dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat widthAlertFrame = dummyNavigationController.navigationBar.frame.size.width;
+    CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
+    CGRect frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
+    alertVC.view.frame = frameForAlertView;
+    
 
     // Properly add childVC to parentVC
-    [masterVC addChildViewController:alertVC];
-    [masterVC.view addSubview:alertVC.view];
-    [alertVC didMoveToParentViewController:masterVC];
+    [self addChildViewController:alertVC];
+    [self.view addSubview:alertVC.view];
+    [alertVC didMoveToParentViewController:self];
 }
 
 
