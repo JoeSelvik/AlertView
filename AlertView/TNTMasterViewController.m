@@ -36,22 +36,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 -(void)displayAlertViewWithMessage:(NSString *)msg
 {
-    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
-    [alertVCController createAlertVCWithMessage:msg fromCurrentVC:self];
+    TNTAlertViewController *alertVC = [TNTAlertViewController createAlertViewWithMessage:msg];
+    
+    // Get the MasterVC to be the parent to the AlertVC
+    TNTMasterViewController *masterVC = (TNTMasterViewController *)[[self view] window].rootViewController;
+
+    // Properly add childVC to parentVC
+    [masterVC addChildViewController:alertVC];
+    [masterVC.view addSubview:alertVC.view];
+    [alertVC didMoveToParentViewController:masterVC];
 }
 
 

@@ -7,11 +7,10 @@
 //
 
 #import "TNTAlertViewController.h"
-
+#import "TNTMasterViewController.h"
+#import "TNTNavigationController.h"
 
 @interface TNTAlertViewController ()
-
-@property (assign, nonatomic) CGRect frameForAlertView;
 
 @property (nonatomic, weak) UIViewController *currentAlertMessageViewController;
 
@@ -33,17 +32,6 @@
     return self;
 }
 
-+ (TNTAlertViewController *)sharedInstance
-{
-    static TNTAlertViewController *_sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = [[TNTAlertViewController alloc] init];
-    });
-    
-    return _sharedInstance;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,32 +45,30 @@
 }
 
 
-// Is it acceptable to pass in the current VC like this?
--(void)createAlertVCWithMessage:(NSString *)message fromCurrentVC:(UIViewController *)currentVC
++ (TNTAlertViewController *)createAlertViewWithMessage:(NSString *)msg
 {
-    UINavigationController *dummyNavigationController = [UINavigationController new]; // Or whichever custom nav bar we use
+    TNTNavigationController *dummyNavigationController = [TNTNavigationController new];
     
-    // AlertView Size
-    CGFloat xAlertFrame = 0;
+    // Set AlertView Frame
+    CGFloat xAlertFrame = 0;    // TODO - find programically?
     CGFloat yAlertFrame = dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
     CGFloat widthAlertFrame = dummyNavigationController.navigationBar.frame.size.width;
     CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
-    self.frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
+    CGRect frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
     
-    //UIStoryboard *storyboard = currentVC.storyboard;
+    // Create the AlertVC from the storyboard
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     TNTAlertViewController *alertVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"alertViewController"];
-    alertVC.view.frame = self.frameForAlertView;
     
-    [alertVC setAlertMessage:message];
+    // Configure the AlertVC
+    alertVC.view.frame = frameForAlertView;
+    [alertVC setAlertMessage:msg];
     [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
     
-    // Properly add childVC to parentVC
-    [currentVC addChildViewController:alertVC];
-    [currentVC.view addSubview:alertVC.view];
-    [alertVC didMoveToParentViewController:currentVC];
-    
+    return alertVC;
 }
+
+#pragma mark - Helper methods
 
 -(void)setAlertMessage:(NSString *)message
 {

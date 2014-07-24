@@ -10,10 +10,6 @@
 
 @interface TNTAlertViewController : UIViewController
 
-+ (TNTAlertViewController *)sharedInstance;
--(void)createAlertVCWithMessage:(NSString *)message fromCurrentVC:(UIViewController *)currentVC;
-
--(void)connectAlertVCCloseButtonWithSelf:(TNTAlertViewController *)instance;
--(void)setAlertMessage:(NSString *)message;
++ (TNTAlertViewController *)createAlertViewWithMessage:(NSString *)msg;
 
 @end

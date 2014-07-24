@@ -24,9 +24,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-//    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
-//    [alertVCController createAlertVCWithMessage:@"Alert from abstracted method" fromCurrentVC:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,12 +36,8 @@
 // For testing
 -(void)newAlertVCButton:(id)sender
 {
-//    TNTAlertViewController *alertVCController = [TNTAlertViewController sharedInstance];
-//    [alertVCController createAlertVCWithMessage:@"From button" fromCurrentVC:self];
-
     TNTMasterViewController *masterVC = (TNTMasterViewController *)[[self view] window].rootViewController;
     [masterVC displayAlertViewWithMessage:@"I did it"];
-    
 }
 
 
