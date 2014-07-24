@@ -41,7 +41,7 @@
 {
     TNTAlertViewController *alertVC = [TNTAlertViewController createAlertViewWithMessage:msg];
     
-    // Get the MasterVC to be the parent to the AlertVC
+    // Get the root MasterVC instance to be the parent to the new AlertVC
     TNTMasterViewController *masterVC = (TNTMasterViewController *)[[self view] window].rootViewController;
 
     // Properly add childVC to parentVC

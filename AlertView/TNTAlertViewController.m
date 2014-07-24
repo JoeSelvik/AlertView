@@ -14,7 +14,7 @@
 
 @property (nonatomic, weak) UIViewController *currentAlertMessageViewController;
 
-@property (strong, nonatomic) IBOutlet UIView *alertBoxView;        // Crashes if this is deleted
+@property (strong, nonatomic) IBOutlet UIView *alertBoxView;        // TODO - Crashes if this is deleted
 @property (weak, nonatomic) IBOutlet UILabel *alertMessageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *alertCloseButton;
 
@@ -76,7 +76,7 @@
 }
 
 
-// TODO: This feels hacky. Improve by adding these two methods together?
+// TODO - This feels hacky. Improve by adding these two methods together?
 -(void)connectAlertVCCloseButtonWithSelf:(TNTAlertViewController *)instance
 {
     self.currentAlertMessageViewController = instance;
