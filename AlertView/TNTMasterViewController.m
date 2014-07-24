@@ -40,8 +40,9 @@
 
 -(void)displayAlertViewWithMessage:(NSString *)msg
 {
-    
-    TNTAlertViewController *alertVC = [TNTAlertViewController createAlertViewWithMessage:msg];
+    // Get alertVC from the storyboard
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TNTAlertViewController *alertVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"alertViewController"];
     
     // Set AlertView Frame
     TNTNavigationController *dummyNavigationController = [TNTNavigationController new];
@@ -52,7 +53,8 @@
     CGRect frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
     alertVC.view.frame = frameForAlertView;
     
-
+    [alertVC setAlertMessage:msg];
+    
     // Properly add childVC to parentVC
     [self addChildViewController:alertVC];
     [self.view addSubview:alertVC.view];

@@ -10,6 +10,6 @@
 
 @interface TNTAlertViewController : UIViewController
 
-+ (TNTAlertViewController *)createAlertViewWithMessage:(NSString *)msg;
+-(void)setAlertMessage:(NSString *)message;
 
 @end

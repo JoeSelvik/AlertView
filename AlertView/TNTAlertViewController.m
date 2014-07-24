@@ -12,11 +12,11 @@
 
 @interface TNTAlertViewController ()
 
-@property (nonatomic, weak) UIViewController *currentAlertMessageViewController;
-
 @property (strong, nonatomic) IBOutlet UIView *alertBoxView;        // TODO - Crashes if this is deleted
 @property (weak, nonatomic) IBOutlet UILabel *alertMessageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *alertCloseButton;
+
+- (IBAction)closeAlertView:(id)sender;
 
 @end
 
@@ -45,29 +45,6 @@
 }
 
 
-+ (TNTAlertViewController *)createAlertViewWithMessage:(NSString *)msg
-{
-    TNTNavigationController *dummyNavigationController = [TNTNavigationController new];
-    
-//    // Set AlertView Frame
-//    CGFloat xAlertFrame = 0;    // TODO - find programically?
-//    CGFloat yAlertFrame = dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
-//    CGFloat widthAlertFrame = dummyNavigationController.navigationBar.frame.size.width;
-//    CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
-//    CGRect frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
-    
-    // Create the AlertVC from the storyboard
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    TNTAlertViewController *alertVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"alertViewController"];
-    
-    // Configure the AlertVC
-//    alertVC.view.frame = frameForAlertView;
-    [alertVC setAlertMessage:msg];
-    [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
-    
-    return alertVC;
-}
-
 #pragma mark - Helper methods
 
 -(void)setAlertMessage:(NSString *)message
@@ -76,23 +53,11 @@
 }
 
 
-// TODO - This feels hacky. Improve by adding these two methods together?
--(void)connectAlertVCCloseButtonWithSelf:(TNTAlertViewController *)instance
+- (IBAction)closeAlertView:(id)sender
 {
-    self.currentAlertMessageViewController = instance;
-    
-    [self.alertCloseButton addTarget:self
-                          action:@selector(closeAlertMessageVC)
-                forControlEvents:UIControlEventTouchUpInside];
-    
-}
-
--(void)closeAlertMessageVC
-{
-    [self.currentAlertMessageViewController willMoveToParentViewController:nil];
-    [self.currentAlertMessageViewController.view removeFromSuperview];
-    [self.currentAlertMessageViewController removeFromParentViewController];
-
+    [self willMoveToParentViewController:nil];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 
 @end
