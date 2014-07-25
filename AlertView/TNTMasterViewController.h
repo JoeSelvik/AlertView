@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TNTAlertViewController.h"
 
-@interface TNTMasterViewController : UIViewController
+
+@interface TNTMasterViewController : UIViewController <TNTAlertVCDelegate>
 
 -(void)displayAlertViewWithMessage:(NSString *)msg;
 

@@ -7,7 +7,6 @@
 //
 
 #import "TNTAlertViewController.h"
-#import "TNTMasterViewController.h"
 #import "TNTNavigationController.h"
 
 @interface TNTAlertViewController ()
@@ -55,9 +54,7 @@
 
 - (IBAction)closeAlertView:(id)sender
 {
-    [self willMoveToParentViewController:nil];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
+    [self.delegate closeAlertView:self];
 }
 
 @end

@@ -8,7 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class TNTAlertViewController;
+
+@protocol TNTAlertVCDelegate <NSObject>
+
+- (void)closeAlertView:(TNTAlertViewController *)alertVC;
+
+@end
+
+
 @interface TNTAlertViewController : UIViewController
+
+@property (weak, nonatomic) id<TNTAlertVCDelegate> delegate;
 
 -(void)setAlertMessage:(NSString *)message;
 

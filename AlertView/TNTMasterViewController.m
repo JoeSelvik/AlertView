@@ -8,7 +8,6 @@
 
 #import "TNTMasterViewController.h"
 #import "TNTNavigationController.h"
-#import "TNTAlertViewController.h"
 
 @interface TNTMasterViewController ()
 
@@ -52,6 +51,7 @@
     CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
     CGRect frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
     alertVC.view.frame = frameForAlertView;
+    alertVC.delegate = self;
     
     [alertVC setAlertMessage:msg];
     
@@ -61,6 +61,11 @@
     [alertVC didMoveToParentViewController:self];
 }
 
-
+- (void)closeAlertView:(TNTAlertViewController *)alertVC
+{
+    [alertVC willMoveToParentViewController:nil];
+    [alertVC.view removeFromSuperview];
+    [alertVC removeFromParentViewController];
+}
 
 @end
