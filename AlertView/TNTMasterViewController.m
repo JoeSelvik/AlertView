@@ -46,10 +46,11 @@
     // Set AlertView Frame
     TNTNavigationController *dummyNavigationController = [TNTNavigationController new];
     CGFloat xAlertFrame = 0;    // TODO - find programically?
-    CGFloat yAlertFrame = dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat yStartAlertFrame = -1 * (dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height);
+    CGFloat yEndAlertFrame = -2 * yStartAlertFrame;
     CGFloat widthAlertFrame = dummyNavigationController.navigationBar.frame.size.width;
     CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
-    CGRect frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
+    CGRect frameForAlertView = CGRectMake(xAlertFrame, yStartAlertFrame, widthAlertFrame, heightAlertFrame);
     alertVC.view.frame = frameForAlertView;
     alertVC.delegate = self;
     
@@ -59,6 +60,17 @@
     [self addChildViewController:alertVC];
     [self.view addSubview:alertVC.view];
     [alertVC didMoveToParentViewController:self];
+    
+    // Animate the AlertVC down into position
+    [UIView animateWithDuration:1.0
+                          delay:0.0
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         alertVC.view.transform = CGAffineTransformMakeTranslation(0.0, yEndAlertFrame);
+                     }
+                     completion:nil
+     ];
+    
 }
 
 - (void)closeAlertView:(TNTAlertViewController *)alertVC
