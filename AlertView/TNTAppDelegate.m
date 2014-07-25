@@ -7,12 +7,39 @@
 //
 
 #import "TNTAppDelegate.h"
+#import "TNTMasterViewController.h"
+#import "TNTNavigationController.h"
+#import "TNTViewController.h"
 
 @implementation TNTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // Create the window
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    // Make TNTMasterVC the rootViewController
+    TNTMasterViewController *masterVC = [TNTMasterViewController new];
+    self.window.rootViewController = masterVC;
+    [self.window makeKeyAndVisible];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    // Create a TNTNavigationController and set its rootVC to the initial VC of the app
+    // Make sure these both come from the storyboard
+    TNTNavigationController *navigationController = [mainStoryboard instantiateViewControllerWithIdentifier:@"firstNavController"];
+    TNTViewController *mainViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"mainViewController"];
+    
+    TNTNavigationController *rootViewController = [navigationController initWithRootViewController:mainViewController];
+
+    // Make the navigationVC (rootNavController) a child of the masterVC (rootVC)
+    [self.window.rootViewController addChildViewController:rootViewController];
+    [self.window.rootViewController.view addSubview:rootViewController.view];
+    [rootViewController didMoveToParentViewController:self.window.rootViewController];
+    
     return YES;
 }
 							

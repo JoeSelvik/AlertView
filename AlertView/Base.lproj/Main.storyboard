@@ -7,7 +7,7 @@
         <!--View Controller - Map-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="TNTViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" id="vXZ-lx-hvc" customClass="TNTViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -97,6 +97,9 @@
                                     <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="closeAlertView:" destination="CZR-tJ-laP" eventType="touchUpInside" id="wOg-JT-hn9"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghx-IX-N35">
                                 <rect key="frame" x="50" y="8" width="250" height="22"/>
@@ -132,7 +135,7 @@
         <!--Navigation Controller-->
         <scene sceneID="pLJ-nu-rRt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="spE-nc-gNc" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="firstNavController" automaticallyAdjustsScrollViewInsets="NO" id="spE-nc-gNc" customClass="TNTNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7EK-st-l8B">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

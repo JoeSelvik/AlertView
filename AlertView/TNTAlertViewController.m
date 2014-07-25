@@ -7,17 +7,15 @@
 //
 
 #import "TNTAlertViewController.h"
-
+#import "TNTNavigationController.h"
 
 @interface TNTAlertViewController ()
 
-@property (assign, nonatomic) CGRect frameForAlertView;
-
-@property (nonatomic, weak) UIViewController *currentAlertMessageViewController;
-
-@property (strong, nonatomic) IBOutlet UIView *alertBoxView;        // Crashes if this is deleted
+@property (strong, nonatomic) IBOutlet UIView *alertBoxView;        // TODO - Crashes if this is deleted
 @property (weak, nonatomic) IBOutlet UILabel *alertMessageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *alertCloseButton;
+
+- (IBAction)closeAlertView:(id)sender;
 
 @end
 
@@ -33,17 +31,6 @@
     return self;
 }
 
-+ (TNTAlertViewController *)sharedInstance
-{
-    static TNTAlertViewController *_sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = [[TNTAlertViewController alloc] init];
-    });
-    
-    return _sharedInstance;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,30 +44,7 @@
 }
 
 
-// Is it acceptable to pass in the current VC like this?
--(void)createAlertVCWithMessage:(NSString *)message fromCurrentVC:(UIViewController *)currentVC
-{
-    UINavigationController *dummyNavigationController = [UINavigationController new]; // Or whichever custom nav bar we use
-    
-    // AlertView Size
-    CGFloat xAlertFrame = 0;
-    CGFloat yAlertFrame = dummyNavigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat widthAlertFrame = dummyNavigationController.navigationBar.frame.size.width;
-    CGFloat heightAlertFrame = dummyNavigationController.navigationBar.frame.size.height;
-    self.frameForAlertView = CGRectMake(xAlertFrame, yAlertFrame, widthAlertFrame, heightAlertFrame);
-    
-    UIStoryboard *storyboard = currentVC.storyboard;
-    TNTAlertViewController *alertVC = [storyboard instantiateViewControllerWithIdentifier:@"alertViewController"];
-    alertVC.view.frame = self.frameForAlertView;
-    
-    [alertVC setAlertMessage:message];
-    [alertVC connectAlertVCCloseButtonWithSelf:alertVC];
-    
-    // Properly add childVC to parentVC
-    [currentVC addChildViewController:alertVC];
-    [currentVC.view addSubview:alertVC.view];
-    [alertVC didMoveToParentViewController:currentVC];
-}
+#pragma mark - Helper methods
 
 -(void)setAlertMessage:(NSString *)message
 {
@@ -88,23 +52,9 @@
 }
 
 
-// TODO: This feels hacky. Improve by adding these two methods together?
--(void)connectAlertVCCloseButtonWithSelf:(TNTAlertViewController *)instance
+- (IBAction)closeAlertView:(id)sender
 {
-    self.currentAlertMessageViewController = instance;
-    
-    [self.alertCloseButton addTarget:self
-                          action:@selector(closeAlertMessageVC)
-                forControlEvents:UIControlEventTouchUpInside];
-    
-}
-
--(void)closeAlertMessageVC
-{
-    [self.currentAlertMessageViewController willMoveToParentViewController:nil];
-    [self.currentAlertMessageViewController.view removeFromSuperview];
-    [self.currentAlertMessageViewController removeFromParentViewController];
-
+    [self.delegate closeAlertView:self];
 }
 
 @end
